@@ -1,6 +1,8 @@
 
 import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.animation as ani
+
 #klasa
 def sgn(number):
     if number<=0:
@@ -51,21 +53,24 @@ class HarmonicOscillator:
     #crtanje        
     def plot_trajectory(self):
         plt.subplot(3,1,1)
-        plt.plot(self.t1,self.x1,color="blue")
-        plt.plot(self.t2,self.x2,color="orange")
+        plt.plot(self.t1,self.x1,color="purple")
+        plt.plot(self.t2,self.x2,color="green")
         plt.subplot(3,1,2)
-        plt.plot(self.t1,self.v1,color="blue")
-        plt.plot(self.t2,self.v2,color="orange")
+        plt.plot(self.t1,self.v1,color="purple")
+        plt.plot(self.t2,self.v2,color="green")
         
         plt.subplot(3,1,3)
-        plt.plot(self.t1,self.a1,color="blue")
+        plt.plot(self.t1,self.a1,color="purple")
         
-        plt.plot(self.t2,self.a2,color="orange")
+        plt.plot(self.t2,self.a2,color="green")
      
         plt.show()
         plt.savefig("graf.png")
     def plot_x(self,colour,size=30):
         plt.scatter(self.t1,self.x1,color=colour,s=size)
-   
+
+    
+    
+      
              
              
