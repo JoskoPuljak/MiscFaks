@@ -41,7 +41,7 @@ class TripleOscilator:
           plt.rcParams["figure.figsize"] = [5, 5]
           plt.rcParams["figure.autolayout"] = True
           fig=plt.figure()
-          ax=plt.axes(xlim=(-0.1,0.1),ylim=(-0.12,0.1))
+          ax=plt.axes(xlim=(-2,15),ylim=(-0.1,0.1))
          
         
           line,=ax.plot([],[],"o",color="blue")
@@ -70,5 +70,5 @@ class TripleOscilator:
             anim.save("test1.gif",writer=writer)
     
 Jim=TripleOscilator(10,0.1,3,6,10,0,0,0)
-Jim.oscilate(5,0.001)
+Jim.oscilate(20,0.1)
 Jim.plot_trajectory()
