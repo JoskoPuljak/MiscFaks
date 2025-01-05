@@ -27,7 +27,8 @@ class Dinamički_bicikl: #klasa cijelog vozila koja pamti karakteristike vozila,
         self.psidot=[self.psidot[0]]
         self.xlat=[0]
         self.psi=[0]
-
+        self.alphar=[0]
+        self.alphaf=[0]
     def move(self,dt): #metoda koja pomice diferencijalne jednadžbe za jedan korak
         self.alat.append((-self.Cr-self.Cf)/(self.m*self.vlon)*self.vlat[-1]+(((self.Cr-self.Cf)/(self.m*self.vlon))-self.vlon)*self.psidot[-1]+(self.Cf/self.m)*self.steer)
         self.omegadot.append(((self.lr*self.Cr-self.lf*self.Cf)/(self.Iz*self.vlon))*self.vlat[-1]+((-self.lf**2*self.Cf+self.lr**2*self.Cr)/(self.Iz*self.vlon))*self.psidot[-1]+(self.Cf/self.Iz)*self.steer)
