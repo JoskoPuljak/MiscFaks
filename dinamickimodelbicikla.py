@@ -36,7 +36,7 @@ class Dinamički_bicikl: #klasa cijelog vozila koja pamti karakteristike vozila,
         self.psidot.append(self.psidot[-1]+self.omegadot[-1]*dt)
         self.xlat.append(self.xlat[-1]+self.vlat[-1]*dt)
         self.psi.append(self.psi[-1]+self.psidot[-1]*dt)
-        self.alphar.append((self.vlat[-1]-self.psidot[-1]*self.lr)/(self.vlon))
+        self.alphar.append((self.vlat[-1]-(self.psidot[-1]*self.lr))/(self.vlon))
         self.alphaf.append((-self.vlon*self.steer)/(self.vlon+(self.vlat[-1]+self.psidot[-1]*self.lf)*self.steer))
     def test(self,t,dt): #testiranje za n koraka
         self.reset()
