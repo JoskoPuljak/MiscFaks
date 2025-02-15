@@ -103,4 +103,4 @@ def koordinate (csvfile,interval):
     
 
 
-koordinate("podacistaze.csv",0.25)
+koordinate("podacistaze.csv",0.1)
