@@ -90,6 +90,10 @@ def koordinate (csvfile,interval):
                     else:
                         direction=0
         print (points) #ispišu se sve točke
+        with open ("tocke.csv","w") as file2:
+            for i in points:
+                file2.write(str(i))
+                file2.write("\n")
         x=[i[0] for i in points]
         y=[i[1] for i in points] 
         plt.scatter(x,y) #plotaju se točke
