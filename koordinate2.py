@@ -10,7 +10,7 @@ def koordinate (csvfile,interval):
         predznak=1
         for line in reader:
             if line[0]=="Straight":
-                for j in np.arange(0,float(line[1]),interval):
+                for j in np.arange(0,float(line[1])+interval,interval):
                     points.append((points[-1][0]+interval*np.cos(direction),points[-1][1]+interval*np.sin(direction)))
             elif line[0]=="Left":
                 if direction==0:
@@ -22,7 +22,7 @@ def koordinate (csvfile,interval):
                     else:
                         yc=point0[1]-R
                     theta0=-mt.pi/2 
-                    for i in np.arange (0,float(line[1]),interval):
+                    for i in np.arange (0,float(line[1])+interval,interval):
                         theta=theta0+((i)/float(line[2]))
                         points.append((xc+R*np.cos(theta),yc+R*np.sin(theta)))
                     if (points[-1][0]-point0[0])!=0:
@@ -60,7 +60,7 @@ def koordinate (csvfile,interval):
                     else:
                         yc=point0[1]+R
                     theta0=mt.pi/2 
-                    for i in np.arange (0,float(line[1]),interval):
+                    for i in np.arange (0,float(line[1])+interval,interval):
                         theta=theta0-((i)/float(line[2]))
                         points.append((xc+R*np.cos(theta),yc+R*np.sin(theta)))
                     if (points[-1][0]-point0[0])!=0:
@@ -71,7 +71,6 @@ def koordinate (csvfile,interval):
                     point0=(points[-1][0],points[-1][1])
                     R=float(line[2])
                     k=(points[-1][1]-points[-2][1])/(points[-1][0]-points[-2][0])
-                    print(direction)
                     if np.arctan2(points[-1][1]-points[-2][1],points[-1][0]-points[-2][0])<0:
                         predznak=-1
                     else:
@@ -81,7 +80,7 @@ def koordinate (csvfile,interval):
                     xc=(point0[0]+predznak*R*np.cos(np.arctan(kperp)))
                     yc=kperp*xc+l
                     theta0=np.arctan2(point0[1]-yc,point0[0]-xc)
-                    for i in np.arange (0,float(line[1]),interval):
+                    for i in np.arange (0,float(line[1])+interval,interval):
                         theta=theta0-((i)/float(line[2]))
                         points.append((xc+R*np.cos(theta),yc+R*np.sin(theta)))
                     if (points[-1][0]-point0[0])!=0:
@@ -101,4 +100,4 @@ def koordinate (csvfile,interval):
     
 
 
-koordinate("Motorland_Aragon.csv",0.001)
+koordinate("Motorland_aragon.csv",0.001)
