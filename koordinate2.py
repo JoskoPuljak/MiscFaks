@@ -19,7 +19,7 @@ def koordinate (csvfile,interval):
                     point0=(points[-1][0],points[-1][1]) #točka u kojoj počinje skretati
                     R=float(line[2]) #čita radijus krivulje iz drugog stupca filea
                     xc=point0[0]   #središte kružnice po kojoj se kreće ima istu x koordinatu kao i početna točka
-                    if point0[0]>points[-3][0]:  #ako se kreće prema desno onda je y koordinata radijus iznad početne točke za R
+                    if point0[0]>points[-2][0]:  #ako se kreće prema desno onda je y koordinata radijus iznad početne točke za R
                         yc=point0[1]+R
                     else:
                         yc=point0[1]-R #u suprotnom je ispod
@@ -93,8 +93,8 @@ def koordinate (csvfile,interval):
         x=[i[0] for i in points]
         y=[i[1] for i in points] 
         plt.scatter(x,y) #plotaju se točke
-        plt.xlim(-600,1500)
-        plt.ylim(-600,1500)
+        plt.xlim(-800,1300)
+        plt.ylim(-800,1300)
         
         plt.show()
         plt.savefig("staza.png")               
@@ -102,4 +102,4 @@ def koordinate (csvfile,interval):
     
 
 
-koordinate("Motorland_aragon.csv",0.01)
+koordinate("Motorland_Aragon2.csv",0.01)
