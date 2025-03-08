@@ -21,9 +21,10 @@ def koordinate (csvfile,interval):
                     xc=point0[0]   #središte kružnice po kojoj se kreće ima istu x koordinatu kao i početna točka
                     if point0[0]>points[-2][0]:  #ako se kreće prema desno onda je y koordinata radijus iznad početne točke za R
                         yc=point0[1]+R
+                        theta0=-np.pi/2   #početni u kojem se nalazi točka u odnosu na središte (-pi/2 radijana)
                     else:
                         yc=point0[1]-R #u suprotnom je ispod
-                    theta0=-mt.pi/2   #početni u kojem se nalazi točka u odnosu na središte (-pi/2 radijana)
+                        theta0=np.pi/2   #početni u kojem se nalazi točka u odnosu na središte (pi/2 radijana)
                     for i in np.arange (0,float(line[1])+interval,interval): #loop koji traje od 0 do duljine segmenta
                         theta=theta0+((i)/float(line[2])) #dodaje početnom kutu dio kuta ovisno o djelicu kruznog luka
                         points.append((xc+R*np.cos(theta),yc+R*np.sin(theta)))  #dodaje se točka koja je za Rcos(theta) udaljena od središta po x-u i za Rsin(theta) po y-u
@@ -53,9 +54,10 @@ def koordinate (csvfile,interval):
                     xc=point0[0]
                     if point0[0]>points[-3][0]: #obrnuti su smjerovi središta
                         yc=point0[1]-R
+                        theta0=np.pi/2 #obrnuti su početni kutovi
                     else:
                         yc=point0[1]+R
-                    theta0=mt.pi/2 
+                        theta0=-np.pi/2 
                     for i in np.arange (0,float(line[1])+interval,interval):
                         theta=theta0-((i)/float(line[2]))  #kut se oduzima umjesto dodaje
                         points.append((xc+R*np.cos(theta),yc+R*np.sin(theta)))
