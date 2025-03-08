@@ -30,7 +30,7 @@ def koordinate (csvfile,interval):
                     if (points[-1][0]-point0[0])!=0: #ako se početna točka i konačna točka zavoja ne nalaze na istom x-u onda smjer nije nula
                         direction=np.pi/2+ np.arctan2(points[-1][1]-yc,points[-1][0]-xc) # novi smjer je okomit na normalu kružnice koja prolazi kroz konačnu točku putanje
                     else:
-                        direction=0 #inače je smjer 0 stupnjeva
+                        direction=np.pi/2 #inače je smjer pi/2 radijana
                 else: 
                     point0=(points[-1][0],points[-1][1]) #početna točka putanje
                     R=float(line[2])  #čita radijus iz drugog stupca
@@ -50,7 +50,7 @@ def koordinate (csvfile,interval):
                     if (points[-1][0]-xc)!=0: #ako krajnja točka putanje nije na istoj x koordinati kao središte kružnice onda smjer nijenula
                         direction=np.pi/2+ np.arctan2(points[-1][1]-yc,points[-1][0]-xc) # novi smjer je okomit na normalu kružnice koja prolazi kroz konačnu točku putanje
                     else:
-                        direction=0 #inače je smjer 0 stupnjeva
+                        direction=np.pi/2 #inače je smjer pi/2 radijana
 
             elif line[0]=="Right": #ako je u prvom stupcu desno
                 if direction ==0:
@@ -68,7 +68,7 @@ def koordinate (csvfile,interval):
                     if (points[-1][0]-point0[0])!=0:
                         direction=-np.pi/2+ np.arctan2(points[-1][1]-yc,points[-1][0]-xc)
                     else:
-                        direction=0
+                        direction=np.pi/2 
                 else: 
                     point0=(points[-1][0],points[-1][1])
                     R=float(line[2])
@@ -88,7 +88,7 @@ def koordinate (csvfile,interval):
                     if (points[-1][0]-xc)!=0: 
                         direction=-np.pi/2+ np.arctan2(points[-1][1]-yc,points[-1][0]-xc)
                     else:
-                        direction=0
+                        direction=np.pi/2 
         print (points) #ispišu se sve točke
         with open ("tocke.csv","w") as file2:
             for i in points:
