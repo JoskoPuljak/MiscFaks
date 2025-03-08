@@ -15,7 +15,7 @@ def koordinate (csvfile,interval):
                 for j in np.arange(0,float(line[1]),interval):  #loop koji traje od 0 do duljine segmenta zadane u drugom stupcu filea
                     points.append((points[-1][0]+interval*np.cos(direction),points[-1][1]+interval*np.sin(direction))) #dodaje se tocka koja je za interval udaljena od prošle. x i y koordinate su izračunate pomoću kuta
             elif line[0]=="Left": #ako je u prvom stupcu "Left"
-                if direction==0: #mora se provjeriti je li kut 0 jer se računa 1/tangens kuta pa nesmije bit 0
+                if direction==0 or direction%(2*np.pi)==0: #mora se provjeriti je li kut 0 jer se računa 1/tangens kuta pa nesmije bit 0
                     point0=(points[-1][0],points[-1][1]) #točka u kojoj počinje skretati
                     R=float(line[2]) #čita radijus krivulje iz drugog stupca filea
                     xc=point0[0]   #središte kružnice po kojoj se kreće ima istu x koordinatu kao i početna točka
@@ -27,10 +27,7 @@ def koordinate (csvfile,interval):
                     for i in np.arange (0,float(line[1])+interval,interval): #loop koji traje od 0 do duljine segmenta
                         theta=theta0+((i)/float(line[2])) #dodaje početnom kutu dio kuta ovisno o djelicu kruznog luka
                         points.append((xc+R*np.cos(theta),yc+R*np.sin(theta)))  #dodaje se točka koja je za Rcos(theta) udaljena od središta po x-u i za Rsin(theta) po y-u
-                    if (points[-1][0]-point0[0])!=0: #ako se početna točka i konačna točka zavoja ne nalaze na istom x-u onda smjer nije nula
-                        direction=np.pi/2+ np.arctan2(points[-1][1]-yc,points[-1][0]-xc) # novi smjer je okomit na normalu kružnice koja prolazi kroz konačnu točku putanje
-                    else:
-                        direction=np.pi/2 #inače je smjer pi/2 radijana
+                    direction=np.pi/2+ np.arctan2(points[-1][1]-yc,points[-1][0]-xc) # novi smjer je okomit na normalu kružnice koja prolazi kroz konačnu točku putanje
                 else: 
                     point0=(points[-1][0],points[-1][1]) #početna točka putanje
                     R=float(line[2])  #čita radijus iz drugog stupca
@@ -47,13 +44,10 @@ def koordinate (csvfile,interval):
                     for i in np.arange (0,float(line[1])+interval,interval): #loop ide od nula do duljine segmenta
                         theta=theta0+((i)/float(line[2])) #dodaje početnom kutu dio kuta ovisno o djelicu kruznog luka
                         points.append((xc+R*np.cos(theta),yc+R*np.sin(theta))) ##dodaje se točka koja je za Rcos(theta) udaljena od središta po x-u i za Rsin(theta) po y-u
-                    if (points[-1][0]-xc)!=0: #ako krajnja točka putanje nije na istoj x koordinati kao središte kružnice onda smjer nijenula
-                        direction=np.pi/2+ np.arctan2(points[-1][1]-yc,points[-1][0]-xc) # novi smjer je okomit na normalu kružnice koja prolazi kroz konačnu točku putanje
-                    else:
-                        direction=np.pi/2 #inače je smjer pi/2 radijana
+                    direction=np.pi/2+ np.arctan2(points[-1][1]-yc,points[-1][0]-xc) # novi smjer je okomit na normalu kružnice koja prolazi kroz konačnu točku putanje
 
             elif line[0]=="Right": #ako je u prvom stupcu desno
-                if direction ==0:
+                if direction ==0 or direction%(2*np.pi)==0:
                     point0=(points[-1][0],points[-1][1])
                     R=float(line[2])
                     xc=point0[0]
@@ -65,10 +59,7 @@ def koordinate (csvfile,interval):
                     for i in np.arange (0,float(line[1])+interval,interval):
                         theta=theta0-((i)/float(line[2]))  #kut se oduzima umjesto dodaje
                         points.append((xc+R*np.cos(theta),yc+R*np.sin(theta)))
-                    if (points[-1][0]-point0[0])!=0:
-                        direction=-np.pi/2+ np.arctan2(points[-1][1]-yc,points[-1][0]-xc)
-                    else:
-                        direction=np.pi/2 
+                    direction=-np.pi/2+ np.arctan2(points[-1][1]-yc,points[-1][0]-xc)
                 else: 
                     point0=(points[-1][0],points[-1][1])
                     R=float(line[2])
@@ -85,10 +76,7 @@ def koordinate (csvfile,interval):
                     for i in np.arange (0,float(line[1])+interval,interval):
                         theta=theta0-((i)/float(line[2])) #kut se oduzima umjesto dodaje
                         points.append((xc+R*np.cos(theta),yc+R*np.sin(theta)))
-                    if (points[-1][0]-xc)!=0: 
-                        direction=-np.pi/2+ np.arctan2(points[-1][1]-yc,points[-1][0]-xc)
-                    else:
-                        direction=np.pi/2 
+                    direction=-np.pi/2+ np.arctan2(points[-1][1]-yc,points[-1][0]-xc)
         print (points) #ispišu se sve točke
         with open ("tocke.csv","w") as file2:
             for i in points:
