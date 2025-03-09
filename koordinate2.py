@@ -87,6 +87,8 @@ def koordinate (csvfile,interval):
         x=[i[0] for i in points]
         y=[i[1] for i in points] 
         plt.scatter(x,y) #plotaju se točke
+        #plt.xlim(-600,1500)
+        #plt.ylim(-600,1500)
         plt.xlim(-800,1300)
         plt.ylim(-800,1300)
         
